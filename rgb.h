@@ -12,13 +12,21 @@
  * @date 17/01/2025
  */
 
-void rgb_init(uint red, uint green, uint blue);
-void rgb_turn_on_red(uint red, uint green, uint blue);
-void rgb_turn_off_red(uint red, uint green, uint blue);
-void rgb_turn_on_green(uint red, uint green, uint blue);
-void rgb_turn_off_green(uint red, uint green, uint blue);
-void rgb_turn_on_blue(uint red, uint green, uint blue);
-void rgb_turn_off_blue(uint red, uint green, uint blue);
-void rgb_blink(uint red, uint green, uint blue);
+typedef struct
+{
+    uint red;
+    uint green;
+    uint blue;
+} rgbpins;
+
+
+void rgb_init(rgbpins pins);
+void rgb_turn_on_red(rgbpins pins);
+void rgb_turn_off_red(rgbpins pins);
+void rgb_turn_on_green(rgbpins pins);
+void rgb_turn_off_green(rgbpins pins);
+void rgb_turn_on_blue(rgbpins pins);
+void rgb_turn_off_blue(rgbpins pins);
+void rgb_blink(rgbpins pins);
 
 #endif
