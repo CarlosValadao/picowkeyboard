@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "rgb.h"
+#include "keyboard4x4.h"
 
 int main()
 {
