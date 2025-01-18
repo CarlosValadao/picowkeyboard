@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(picokeyboard picokeyboard.c rgb.c keyboard4x4.c)
+add_executable(picokeyboard picokeyboard.c rgb.c keyboard4x4.c buzzer.c)
 
 pico_set_program_name(picokeyboard "picokeyboard")
 pico_set_program_version(picokeyboard "0.1")

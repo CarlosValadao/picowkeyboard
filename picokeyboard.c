@@ -2,6 +2,7 @@
 #include "pico/stdlib.h"
 #include "rgb.h"
 #include "keyboard4x4.h"
+#include "buzzer.h"
 
 int main()
 {
