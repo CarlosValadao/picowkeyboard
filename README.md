@@ -1,106 +1,77 @@
-\documentclass[a4paper, 12pt]{article}
-\usepackage[portuges]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{indentfirst}
-\usepackage{graphicx}
-\usepackage{multicol,lipsum}
-\usepackage{float} % Pacote para controle exato do posicionamento das figuras
-\usepackage{placeins} % Para usar \FloatBarrier
+# PicoWKeyboard
 
-\begin{document}
-%
-\begin{titlepage}
-	\begin{center}
-		\Huge{Embarca Tech - Tarefa 1 - Aula Síncrona (09/01/25)}\\
-		\vspace{15pt}
-        \vspace{95pt}
-        \textbf{\LARGE{Relatório da Solução de um Código Morse SOS por meio de um LED }}\\
-		\vspace{3,5cm}
-	\end{center}
-	\begin{flushleft}
-		\begin{tabbing}
-			Aluno: Carlos Henrique de Oliveira Valadão \\
-			Professor: Wilton Lacerda \\
-	\end{tabbing}
- \end{flushleft}
-	\vspace{1cm}
-	\begin{center}
-		\vspace{\fill}
-			 Janeiro\\
-		 2025
-	\end{center}
-\end{titlepage}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Este projeto foi desenvolvido para integrar um teclado matricial 4x4, um buzzer e um LED RGB com a Raspberry Pi Pico W incluída no **Kit BitDogLab versão 6.3**. A integração foi realizada utilizando os pinos GPIO e a linguagem C, com o objetivo de controlar os periféricos a partir de interações com o teclado matricial.
 
-\newpage
-% % % % % % % % % % % % % % % % % % % % % % % % % %
-\newpage
-\tableofcontents
-\thispagestyle{empty}
+## Funcionalidades
 
-\newpage
-\pagenumbering{arabic}
-% % % % % % % % % % % % % % % % % % % % % % % % % % %
-\section{Introdução}
+- **LED RGB:**
+  - Pressione `A`: Liga o LED vermelho.
+  - Pressione `B`: Liga o LED azul.
+  - Pressione `C`: Liga o LED verde.
+  - Pressione `D`: Liga todos os LEDs.
 
-O termo comunicação pode ser definido, segundo \textbf{(HAYKIN; MOHER, 2011)}, como a troca de informações entre dois pontos, utilizando símbolos e regras bem definidas. Esse processo exige a presença de um meio, transmissores e receptores, estando presente em diversas formas no nosso cotidiano, como em telefones, rádios e televisões, muitas vezes passando despercebido.\\
-Uma das formas mais simples de construir um sistema de comunicação e seu protocolo é utilizando a menor quantidade possível de símbolos, garantindo que sejam totalmente distintos e inconfundíveis. O código binário é um dos sistemas de comunicação mais simples e amplamente conhecidos, sendo adotado principalmente em computação moderna. Tanto o sistema numérico de base 2 quanto o código Morse são exemplos de sistemas binários de comunicação.\\
-Nesse contexto, este relatório apresenta o desenvolvimento de um sistema capaz de transmitir a mensagem \textbf{SOS} em código Morse, que utiliza \textit{dot} (.) e \textit{dash} (-) como seus dois símbolos binários. A transmissão é realizada por meio de um LED vermelho conectado a uma Raspberry Pi Pico W, parte do Kit BitDogLab. O funcionamento segue a temporização definida no problema, que será detalhada a seguir. Para a solução, foi utilizada a linguagem de programação C em sua versão ANSI Standard 11. A simulação e montagem do circuito foram realizadas no site Wokwi.
-\newpage
+- **Buzzer:**
+  - Pressione `#`: Ativa o buzzer.
 
-\section{Solução Proposta}
+## Tecnologias Utilizadas
 
-Com o intuito de atender aos requisitos apresentados na tarefa, foi desenvolvido um programa em C capaz de enviar a mensagem SOS por meio de um LED. O código-fonte foi desenvolvido utilizando o VS Code, e o programa incorpora estruturas básicas da linguagem C, como funções pré-definidas e bibliotecas específicas da Raspberry Pi, conforme ilustrado na \textbf{figura 1}.\\
+- **Linguagem:** C
+- **Hardware:** Raspberry Pi Pico W
+- **Simulação:** [Wokwi](https://wokwi.com)
+- **SDK:** Pico SDK versão 2.1.0
 
-Os critérios de temporização foram respeitados:\\
+## Requisitos para Execução
 
-\begin{itemize}
-    \item Um ponto (.) é representado pelo LED aceso por 0,2 segundos.\\
-    \item Um traço (-) é representado pelo LED aceso por 0,8 segundos.\\
-    \item O intervalo entre pontos e traços dentro de uma mesma letra é de 0,125 segundos (tempo GAP).\\
-    \item O intervalo entre letras deve ser de 0,25 segundos.\\
-    \item Após completar o sinal SOS (três pontos, três traços, três pontos), o ciclo reinicia após um intervalo de 3 segundos.\\
-\end{itemize}
+Antes de rodar o código, você precisa ter instalado:
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\linewidth]{imagens/codigo_funcoes.png}
-    \caption{Funções C que permitem a comunicação Morse}
-    \label{fig:funcoesC}
-\end{figure}
+1. **GNU Arm Embedded Toolchain**
+   - [Instalar GNU Arm Embedded Toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm)
 
-\FloatBarrier
+2. **Pico SDK 2.1.0**
+   - Siga a [documentação oficial do Pico SDK](https://github.com/raspberrypi/pico-sdk) para configurá-lo.
 
-Conforme mencionado, foi criado um circuito virtual para simular o comportamento da Raspberry Pi Pico W no site Wokwi. A simulação foi realizada no VS Code utilizando extensões específicas. O circuito é composto por um resistor de 10k\,\(\Omega\), um LED vermelho e a Raspberry Pi Pico, como mostrado na \textbf{figura 2}.
+3. **Extensões para VS Code:**
+   - Raspberry Pi Pico
+   - Wokwi
+   - CMake
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\linewidth]{imagens/simulacao.png}
-    \caption{Circuito montado no Wokwi}
-    \label{fig:circuitoWokwi}
-\end{figure}
+## Como Rodar
 
-\FloatBarrier
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/CarlosValadao/picowkeyboard.git
+   cd picowkeyboard
+   ```
 
-Na \textbf{figura 3}, é possível visualizar o arquivo \textit{diagram.json}, que representa o mesmo circuito mostrado na \textbf{figura 2}.
+2. **Importe o projeto:**
+   - Abra o VS Code.
+   - No menu da extensão da Raspberry Pi Pico, escolha "Importar Projeto" e selecione o diretório do repositório.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{imagens/wokwi_diagramjson.png}
-    \caption{Arquivo \textit{diagram.json}}
-    \label{fig:diagramJSON}
-\end{figure}
+3. **Compile o código:**
+   - Use a opção de "Build" na extensão do Pico no VS Code.
 
-O arquivo \textit{diagram.json}, conforme ilustrado na figura 3, foi criado juntamente com o \textit{wokwi.toml}. Além disso, os arquivos \textit{MorseSOS.uf2} e \textit{MorseSOS.elf} foram gerados para viabilizar a simulação do circuito e verificar seu correto funcionamento.
+4. **Simule no Wokwi:**
+   - Abra o arquivo do circuito configurado e execute a simulação no Wokwi.
 
-\FloatBarrier
+## Estrutura do Repositório
 
-\section{Conclusão}
-O sistema desenvolvido foi projetado e implementado em conformidade com os requisitos previamente estabelecidos. Durante o processo de desenvolvimento, foram realizadas análises detalhadas e testes rigorosos para garantir a adequação aos objetivos do projeto.
+- **`src/`**: Código fonte do projeto.
+- **`include/`**: Arquivos de cabeçalho.
+- **`CMakeLists.txt`**: Arquivo de configuração para o CMake.
+- **`diagram.json`**: Configuração do circuito para o Wokwi.
 
-A solução atende plenamente às especificações funcionais e não funcionais, incluindo o correto funcionamento do código Morse SOS por meio do LED, conforme o escopo do projeto. Ademais, o sistema demonstra robustez e eficiência, operando de forma consistente e confiável dentro dos parâmetros esperados.
+## Simulação no Wokwi
 
-\newpage
+O circuito foi projetado e simulado no Wokwi. Certifique-se de usar o arquivo `diagram.json` para replicar a simulação.
 
-\end{document}
+## Contribuições
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests para melhorias no projeto.
+
+## Licença
+
+Este projeto está sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
+
+## Contato
+
+Para mais informações, entre em contato com [Carlos Valadão](https://github.com/CarlosValadao).
