@@ -42,12 +42,14 @@ void rgb_turn_off_green(const rgbpins *pins)
 
 void rgb_turn_on_blue(const rgbpins *pins)
 {
-    return;
+     //Ligar o LED azul
+    gpio_put(pins->blue, 1);
 }
 
 void rgb_turn_off_blue(const rgbpins *pins)
 {
-    return;
+    //Desligar o LED Azul
+    gpio_put(pins->blue, 0);
 }
 
 void rgb_blink(const rgbpins *pins)
