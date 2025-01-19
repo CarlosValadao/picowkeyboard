@@ -1,16 +1,17 @@
 #include "keyboard4x4.h"
 
-uint _columns[4] = {};
-uint _rows[4] = {};
-uint _keyboard_values[16] = {};
+typedef struct {
+    uint columns[4];
+    uint rows;
+    const char *const KEY_MAP;
+} keyboard4x4;
 
-
-void keyboard_init(uint columns[4], uint rows[4], char keyboard_values[16])
+keyboard4x4 *keyboard_init(uint columns[4], uint rows[4], const char keyboard_values[16])
 {
     return;
 }
 
-char keyboard_get_pressed_key()
+char keyboard_get_pressed_key(const keyboard4x4 *keyboard)
 {
     return '\0';
 }
