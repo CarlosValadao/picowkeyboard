@@ -4,17 +4,10 @@
 #include "hardware/pwm.h"
 #include "hardware/timer.h"
 
-#define button_B 6 //TROCAR POR BOTÃO DO TECLADO NUMERICO 4X4
-#define buzzer 28
-#define frequencia 500
+#define BUZZER_FREQUENCY 500
 
-static volatile uint a = 1;
-
-int tempo_buzzer_on = 300;
-
-void set_frequency(uint gpio, uint frequency) {
-    // Configurar o GPIO para PWM
-    gpio_set_function(gpio, GPIO_FUNC_PWM);
+static void buzzer_set_frequency(uint gpio, uint frequency)
+{
     // Obter o slice do PWM para o GPIO
     uint slice_num = pwm_gpio_to_slice_num(gpio);
     // Configurar a frequência
@@ -29,29 +22,15 @@ void set_frequency(uint gpio, uint frequency) {
     pwm_set_gpio_level(gpio, 32768); // Meio do ciclo (50%)
 }
 
-//rotina da interrupção
-static void On_Off_Buzzer(uint gpio, uint32_t events){
-    a++;
-    if(a%2 == 0){
-        set_frequency(buzzer, frequencia);
-    }else {
-        pwm_set_gpio_level(buzzer, 0);
-    }
+void buzzer_init(uint buzzer_pin){
+    gpio_init(buzzer_pin);
+    gpio_set_dir(buzzer_pin, GPIO_OUT);
+    // Configurar o GPIO para PWM
+    gpio_set_function(buzzer_pin, GPIO_FUNC_PWM); 
+}
+
+void buzzer_beep(uint buzzer_pin, uint duration){
+    buzzer_set_frequency(buzzer_pin, BUZZER_FREQUENCY);
+    sleep_ms(duration);
+    pwm_set_gpio_level(buzzer_pin, 0);
  }
-
-void config_buzzer(){
-    gpio_init(buzzer);
-    gpio_set_dir(buzzer, GPIO_OUT);
-}
-
-int main() {
-    config_buzzer();
-
-    gpio_init(button_B);///TROCAR POR BOTÃO DO TECLADO NUMERICO 4X4
-    gpio_set_dir(button_B, GPIO_IN);//TROCAR POR BOTÃO DO TECLADO NUMERICO 4X4
-    gpio_pull_up(button_B);//TROCAR POR BOTÃO DO TECLADO NUMERICO 4X4
-    
-    //interrupção da gpio habilitada
-    //ligar buzzer
-    gpio_set_irq_enabled_with_callback(button_B, GPIO_IRQ_EDGE_FALL, 1, & On_Off_Buzzer);
-}

@@ -12,7 +12,8 @@
  * @date 17/01/2025
  */
 
+static void buzzer_set_frequency(uint buzzer_pin, uint frequency);
 void buzzer_init(uint buzzer_pin);
-void buzzer_beep(uint duration);
+void buzzer_beep(uint buzzer_pin, uint duration);
 
 #endif
