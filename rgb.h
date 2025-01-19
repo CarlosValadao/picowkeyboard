@@ -27,6 +27,8 @@ void rgb_turn_on_green(const rgbpins *pins);
 void rgb_turn_off_green(const rgbpins *pins);
 void rgb_turn_on_blue(const rgbpins *pins);
 void rgb_turn_off_blue(const rgbpins *pins);
+void rgb_turn_on_white(const rgbpins *pins);
+void rgb_turn_off_white(const rgbpins *pins);
 void rgb_blink(const rgbpins *pins);
 
 #endif

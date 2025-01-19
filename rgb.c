@@ -54,6 +54,19 @@ void rgb_turn_off_blue(const rgbpins *pins)
     gpio_put(pins->blue, 0);
 }
 
+void rgb_turn_on_white(const rgbpins *pins) {
+    gpio_put(pins->red, 1);
+    gpio_put(pins->green, 1);
+    gpio_put(pins->blue, 1);
+}
+
+void rgb_turn_off_white(const rgbpins *pins) {
+    gpio_put(pins->red, 0);
+    gpio_put(pins->green, 0);
+    gpio_put(pins->blue, 0);
+}
+
+
 void rgb_blink(const rgbpins *pins)
 {
     return;

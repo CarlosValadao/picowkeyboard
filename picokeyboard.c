@@ -21,7 +21,12 @@ int main()
             printf("Tecla pressionada: %c\n", key);
             if (key == 'A') {
                 rgb_turn_on_red(&rgb_led);
+            }else if(key == 'D') {
+            rgb_turn_on_white(&rgb_led); // Liga a luz branca
+            } else if (key == '0') {
+                rgb_turn_off_white(&rgb_led); // Desliga a luz branca
+            } else {
+                rgb_turn_off_all(&rgb_led);
             }
-        }
     }
 }
