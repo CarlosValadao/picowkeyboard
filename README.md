@@ -45,13 +45,13 @@ Antes de rodar o código, você precisa ter instalado:
 
 2. **Importe o projeto:**
    - Abra o VS Code.
-   - No menu da extensão da Raspberry Pi Pico, escolha "Importar Projeto" e selecione o diretório do repositório.
+   - No menu da extensão da Raspberry Pi Pico, escolha **"Importar Projeto"** e selecione o diretório do repositório.
 
 3. **Compile o código:**
-   - Use a opção de "Build" na extensão do Pico no VS Code.
+   - Use a opção de **"compile"** na extensão do Pico no VS Code.
 
 4. **Simule no Wokwi:**
-   - Abra o arquivo do circuito configurado e execute a simulação no Wokwi.
+   - **Abra o arquivo do circuito configurado** e execute a simulação no Wokwi.
 
 ## Estrutura do Repositório
 
