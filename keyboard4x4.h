@@ -12,11 +12,13 @@
  * @date 17/01/2025
  */
 
-extern uint _columns[4];
-extern uint _rows[4];
-extern uint _keyboard_values[16];
+typedef struct {
+    uint *columns;
+    uint *rows;
+    char *KEY_MAP;
+} keyboard4x4;
 
-void keyboard_init(uint columns[4], uint rows[4], char keyboard_values[16]);
-char keyboard_get_pressed_key();
+keyboard4x4 *keyboard_init(uint columns[4], uint rows[4], char keyboard_values[16]);
+char keyboard_get_pressed_key(keyboard4x4 const *keyboard);
 
 #endif
