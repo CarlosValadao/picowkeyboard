@@ -1,4 +1,4 @@
-# PicoWKeyboard
+# PicoWKeyboard -> Vídeo - https://youtu.be/r0tFtoeKn5Q
 
 Este projeto foi desenvolvido para integrar um teclado matricial 4x4, um buzzer e um LED RGB com a Raspberry Pi Pico W incluída no **Kit BitDogLab versão 6.3**. A integração foi realizada utilizando os pinos GPIO e a linguagem C, com o objetivo de controlar os periféricos a partir de interações com o teclado matricial.
 
